@@ -1,0 +1,32 @@
+.bookItem {
+    padding: 40px 20px;
+    background-color: #f3f2f2;
+    width: 270px;
+    margin-top: 50px;
+    cursor: pointer;
+    &__img{
+        img{
+            display: block;
+            width: 128px;
+            height: 182px;
+            margin: 0 auto;
+        }
+        margin-bottom: 20px;
+    }
+    &__category{
+        text-decoration: underline;
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+    }
+    &__title{
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    &__list{
+        
+    }
+    &__author{
+        color: rgba(0, 0, 0, 0.5);
+        display: inline;
+    }
+}

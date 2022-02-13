@@ -1,0 +1,32 @@
+.search{
+    height: 30px;
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 0 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    &__input{
+        background-color: transparent;
+        border: none;
+        outline: none;
+        height: 100%;
+        width: 100%;
+    }
+    &__btn{
+        background-color: transparent;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        margin-top: 2px;
+    }
+}
+
+@media (max-width: 900px) {
+    .search {
+        width: 350px;
+
+    }
+}
