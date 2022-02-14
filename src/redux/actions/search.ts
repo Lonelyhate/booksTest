@@ -12,7 +12,13 @@ export const fetchBooks = (value: string, category: searchCateogries, sorting: s
                     category === searchCateogriesOptions.ALL ? '' : `+subject:${category}`
                 }&orderBy=${sorting}&maxResults=30&=AIzaSyDBb68eIu9lumyo0tsbW2vflxTTIeLn6pw`,
             );
-            dispatch({ type: SearchActionTypes.FETCH_BOOKS_SUCCESS, payload: response.data.items });
+            dispatch({
+                type: SearchActionTypes.FETCH_BOOKS_SUCCESS,
+                payload: {
+                    books: response.data.items,
+                    totalItems: response.data.totalItems,
+                },
+            });
             dispatch({ type: SearchActionTypes.SAVE_VALUE, payload: value });
         } catch (e) {
             dispatch({

@@ -8,6 +8,7 @@ export interface searchState {
     error: string | null;
     stepPagination: number
     value: string
+    totalItems: number | null
 }
 
 export enum SearchActionTypes {
@@ -26,7 +27,10 @@ interface fetchSearch {
 
 interface fetchSearchSuccess {
     type: SearchActionTypes.FETCH_BOOKS_SUCCESS;
-    payload: IbooksApi[];
+    payload: {
+        books: IbooksApi[],
+        totalItems: number
+    }
 }
 
 interface fetchSearchError {

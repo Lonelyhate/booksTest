@@ -8,10 +8,13 @@ import { fetchLoadMoreBooks } from '../../../../redux/actions/search';
 
 const BooksList: FC = () => {
     const dispatch = useDispatch();
-    const { items, loading, category, sortingBy, stepPagination, value } = useTypedSelector(
-        (state) => state.search,
-    );
-    console.log(items);
+    const { items, loading, category, sortingBy, stepPagination, value, totalItems } =
+        useTypedSelector((state) => state.search);
+
+    let endBooks = false;
+    if (items) {
+        endBooks = items.length % 30 === 0;
+    }
 
     const onClickLoadMore = () => {
         dispatch(fetchLoadMoreBooks(value, category, sortingBy, stepPagination));
@@ -20,7 +23,11 @@ const BooksList: FC = () => {
     return (
         <div className={[s.booksList, 'container'].join(' ')}>
             <h2 className={s.booksList__title}>
-                {items ? 'Found results' : 'not found according to your request'}
+                {totalItems === null
+                    ? 'Start searching'
+                    : totalItems === 0
+                    ? 'Nothing was found for your request'
+                    : `Found ${totalItems} results`}
             </h2>
             {items && (
                 <div className={s.booksList__content}>
@@ -34,7 +41,11 @@ const BooksList: FC = () => {
                     <img src={loadGif} alt="loading..." />
                 </div>
             )}
-            {items && items.length > 0 && !loading && <button onClick={onClickLoadMore} className={s.booksList__btn} >Load More</button>}
+            {items && items.length > 0 && !loading && endBooks && (
+                <button onClick={onClickLoadMore} className={s.booksList__btn}>
+                    Load More
+                </button>
+            )}
         </div>
     );
 };
